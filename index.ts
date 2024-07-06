@@ -1,16 +1,16 @@
 import express from "express";
-import cors from "cors";
+// import cors from "cors";
 import dotenv from "dotenv";
 
 const app = express();
 const router = express.Router();
 dotenv.config();
 
-app.use(
-  cors({
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     credentials: true,
+//   })
+// );
 app.use(express.json());
 
 app.listen(process.env.PORT, function () {
