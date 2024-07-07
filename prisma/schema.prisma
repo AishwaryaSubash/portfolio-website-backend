@@ -1,0 +1,77 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model TechSkill {
+    id          Int       @id @default(autoincrement())
+    name        String
+    svg         String
+    proficiency Int
+    skillType   SkillType @relation(fields: [skillTypeId], references: [id])
+    skillTypeId Int
+}
+
+model SkillType {
+    id       Int         @id @default(autoincrement())
+    typeName String
+    skills   TechSkill[]
+}
+
+model Project {
+    id                  Int         @id @default(autoincrement())
+    route               String
+    title               String
+    websiteUrl          String
+    websiteImg          String
+    githubUrl           String
+    detailedDescription String
+    oneLineDescription  String
+    category            String
+    team                String
+    duration            Int
+    time                String
+    techStack           TechStack[]
+}
+
+model TechStack {
+    id        Int     @id @default(autoincrement())
+    name      String
+    projectId Int
+    project   Project @relation(fields: [projectId], references: [id])
+}
+
+model ContactDetail {
+    id    Int    @id @default(autoincrement())
+    media String
+    link  String
+    icon  String
+}
+
+model EducationDetail {
+    id          Int    @id @default(autoincrement())
+    education   String
+    institution String
+    grade       String
+    timeFrom    Int
+    timeTo      Int
+}
+
+model WorkExperience {
+    id          Int    @id @default(autoincrement())
+    position    String
+    institution String
+    description String
+    time        String
+}
+
+model ProfessionalSkill {
+    id          Int    @id @default(autoincrement())
+    name        String
+    svg         String
+    proficiency Int
+}
