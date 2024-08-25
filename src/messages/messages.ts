@@ -21,7 +21,7 @@ messageRouter.post("/post", async (req: Request, res: Response) => {
   } else {
     res
       .status(500)
-      .json({ error: "Failed to add visitor", details: response.error });
+      .json({ error: "Failed to add message", details: response.error });
   }
 });
 
