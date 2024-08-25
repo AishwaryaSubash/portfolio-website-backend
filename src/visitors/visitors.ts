@@ -4,13 +4,27 @@ import { getAllVisitors, addVisitor } from "./visitor.service";
 const visitorRouter: Router = express.Router();
 
 visitorRouter.get("/", async (req: Request, res: Response) => {
-  const visitors = await getAllVisitors();
-  res.status(201).json(visitors);
+  const response = await getAllVisitors();
+  if (response.fetched) {
+    res
+      .status(200)
+      .json({ visitors: response.visitors, count: response.count });
+  } else {
+    res
+      .status(500)
+      .json({ error: "Failed to fetch visitors", details: response.error });
+  }
 });
 
 visitorRouter.post("/post", async (req: Request, res: Response) => {
-  const visitor = await addVisitor(req.body);
-  res.status(201).json(visitor);
+  const response = await addVisitor(req.body);
+  if (response.added) {
+    res.status(201).json(response.visitor);
+  } else {
+    res
+      .status(500)
+      .json({ error: "Failed to add visitor", details: response.error });
+  }
 });
 
 export default visitorRouter;

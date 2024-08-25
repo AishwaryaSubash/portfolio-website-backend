@@ -8,9 +8,9 @@ async function getAllVisitors() {
     return { fetched: true, visitors: visitors, count: visitors.length };
   } catch (e) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
-      return { fetched: false, message: e };
+      return { fetched: false, error: e };
     } else {
-      return { fetched: false, message: e };
+      return { fetched: false, error: e };
     }
   }
 }
@@ -26,9 +26,9 @@ async function addVisitor(visitorData: VisitorDto) {
   } catch (e) {
     console.log(e);
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
-      return { added: false, message: e };
+      return { added: false, error: e };
     } else {
-      return { added: false, message: e };
+      return { added: false, error: e };
     }
   }
 }

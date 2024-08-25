@@ -8,9 +8,9 @@ async function getAllMessages() {
     return { fetched: true, messages: messages };
   } catch (e) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
-      return { fetched: false, message: e };
+      return { fetched: false, error: e };
     } else {
-      return { fetched: false, message: e };
+      return { fetched: false, error: e };
     }
   }
 }
@@ -28,9 +28,9 @@ async function postMessage(messageData: AddMessageDto) {
   } catch (e) {
     console.log(e);
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
-      return { added: false, message: e };
+      return { added: false, error: e };
     } else {
-      return { added: false, message: e };
+      return { added: false, error: e };
     }
   }
 }
