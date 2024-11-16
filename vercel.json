@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "portfolio-website-backend",
   "builds": [
     {
       "src": "index.ts",
@@ -10,11 +9,13 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/index.ts",
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
-      }
+      "dest": "index.ts"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "buildCommand": "prisma generate && tsc",
+  "installCommand": "npm install",
+  "outputDirectory": "dist"
 }
