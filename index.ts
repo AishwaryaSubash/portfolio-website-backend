@@ -8,11 +8,7 @@ const app = express();
 const router = express.Router();
 dotenv.config();
 
-app.use(
-  cors({
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 app.listen(process.env.PORT, function () {
